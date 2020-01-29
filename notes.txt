@@ -1,0 +1,21 @@
+(1) Django Tutorial in Visual Studio Code:
+https://code.visualstudio.com/docs/python/tutorial-django
+
+
+(2) Django documentation 
+https://docs.djangoproject.com/en/3.0/
+
+
+(3) Create Django superuser for admin interface
+[user@coffeehouse ~]$ python manage.py createsuperuser
+Username (leave blank to use 'admin'): 
+Email address: admin@coffeehouse.com
+Password: 
+Password (again): 
+The password is too similar to the email address.
+This password is too short. It must contain at least 8 characters.
+This password is too common.
+Bypass password validation and create user anyway? [y/N]:
+Password: 
+Password (again): 
+Superuser created successfully.
