@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Detail Page</title>
+</head>
+
+<body>
+    <h1>{{ question.question_text }}</h1>
+    {% if choices %}
+    <ul>
+        {% for choice in choices %}
+        <li>{{ choice.choice_text }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>oops, no choice found!</p>
+    {% endif %}
+</body>
+
+</html>
