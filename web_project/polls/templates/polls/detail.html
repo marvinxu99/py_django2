@@ -8,15 +8,22 @@
 
 <body>
     <h1>{{ question.question_text }}</h1>
-    {% if choices %}
-    <ul>
-        {% for choice in choices %}
-        <li>{{ choice.choice_text }}</li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>oops, no choice found!</p>
+
+
+    {% if error_message %}
+    <p><strong>{{ error_message }}</strong></p>
     {% endif %}
+
+    <form action="{% url 'polls:vote' question.id %}" method="post">
+        {% csrf_token %}
+        {% for choice in question.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+        {% endfor %}
+        <input type="submit" value="Vote">
+    </form>
+    <a href="{% url 'polls:question' %}">Back to questions</a>
+
 </body>
 
 </html>
