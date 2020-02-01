@@ -1,8 +1,7 @@
-from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
-from django.views import generic
 
+from django.http import HttpResponse, HttpResponseRedirect
 
 from .models import Question, Choice
 
@@ -21,49 +20,34 @@ def index(request):
 #     return HttpResponse(template.render(context, request))
 
 
-class QuestionView(generic.ListView):
-    template_name = 'polls/question.html'
-    context_object_name = 'latest_question_list'
+def question(request):
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    context = {
+        'latest_question_list': latest_question_list,
+    }
+    return render(request, 'polls/question.html', context)
 
-    def get_queryset(self):
-        """Return the last five published questions."""
-        return Question.objects.order_by('-pub_date')[:5]
 
-
-# class DetailView(generic.DetailView):
-#     model = Question
-#     template_name = 'polls/detail.html'
 def detail(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     choices = question.choice_set.all()
-    # next_q = Question.objects.filter(pub_date__gt=question.pub_date).order_by('pub_date').first()
-    try:
-        prev_q = question.get_previous_by_pub_date()
-        prev_id = prev_q.id
-    except:
-        prev_id = 0
-
-    try:
-        next_q = question.get_next_by_pub_date()
-        next_id = next_q.id
-    except:
-        next_id = 0
-
     return render(
         request,
         'polls/detail.html',
         {
             'question': question,
-            'choices': choices,
-            'prev_id': prev_id,
-            'next_id': next_id
+            'choices': choices
         }
     )
 
 
-class ResultsView(generic.DetailView):
-    model = Question
-    template_name = 'polls/results.html'
+def results(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    return render(
+        request,
+        'polls/results.html',
+        {'question': question}
+    )
 
 
 def vote(request, question_id):

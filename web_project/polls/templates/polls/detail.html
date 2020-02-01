@@ -9,7 +9,6 @@
 <body>
     <h1>{{ question.question_text }}</h1>
 
-
     {% if error_message %}
     <p><strong>{{ error_message }}</strong></p>
     {% endif %}
@@ -22,7 +21,21 @@
         {% endfor %}
         <input type="submit" value="Vote">
     </form>
-    <a href="{% url 'polls:question' %}">Back to questions</a>
+
+    {% if prev_id %}
+    <p><a href="{% url 'polls:detail' prev_id %}">Previous Question</a></p>
+    {% else %}
+    <p>Previous Question</p>
+    {% endif %}
+
+    {% if next_id %}
+    <p><a href="{% url 'polls:detail' next_id %}">Next Question</a></p>
+    {% else %}
+    <p>Next Question</p>
+    {% endif %}
+
+    </p>
+    <p><a href="{% url 'polls:question' %}">Back to questions (latest five)</a></p>
 
 </body>
 
