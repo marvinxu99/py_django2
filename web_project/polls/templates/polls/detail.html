@@ -1,42 +1,32 @@
-<!DOCTYPE html>
-<html>
+{% extends "polls/layout_general.html" %}
+{% block title %}
+Detail Page
+{% endblock %}
 
-<head>
-    <meta charset="utf-8" />
-    <title>Detail Page</title>
-</head>
+{% block content %}
+<h2>{{ question.question_text }}</h2>
 
-<body>
-    <h1>{{ question.question_text }}</h1>
+{% if error_message %}
+<p class='warning'><strong>{{ error_message }}</strong></p>
+{% endif %}
 
-    {% if error_message %}
-    <p><strong>{{ error_message }}</strong></p>
-    {% endif %}
+<form action="{% url 'polls:vote' question.id %}" method="post">
+    {% csrf_token %}
+    {% for choice in question.choice_set.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+    {% endfor %}
+    <input type="submit" value="Vote">
+</form>
 
-    <form action="{% url 'polls:vote' question.id %}" method="post">
-        {% csrf_token %}
-        {% for choice in question.choice_set.all %}
-        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-        {% endfor %}
-        <input type="submit" value="Vote">
-    </form>
+{% if prev_id %}
+<p><a href="{% url 'polls:detail' prev_id %}">Previous question</a></p>
+{% endif %}
 
-    {% if prev_id %}
-    <p><a href="{% url 'polls:detail' prev_id %}">Previous Question</a></p>
-    {% else %}
-    <p>Previous Question</p>
-    {% endif %}
+{% if next_id %}
+<p><a href="{% url 'polls:detail' next_id %}">Next question</a></p>
+{% endif %}
 
-    {% if next_id %}
-    <p><a href="{% url 'polls:detail' next_id %}">Next Question</a></p>
-    {% else %}
-    <p>Next Question</p>
-    {% endif %}
-
-    </p>
-    <p><a href="{% url 'polls:question' %}">Back to questions (latest five)</a></p>
-
-</body>
-
-</html>
+</p>
+<p><a href="{% url 'polls:question' %}">Back to questions (latest five)</a></p>
+{% endblock %}

@@ -13,6 +13,12 @@ from .models import Question, Choice
 def index(request):
     return render(request, 'polls/index.html')
 
+def about(request):
+    return render(request, 'polls/about.html')
+
+def contact(request):
+    return render(request, 'polls/contact.html')
+
 # def question(request):
 #     latest_question_list = Question.objects.order_by('-pub_date')[:5]
 #     template = loader.get_template('polls/index.html')
@@ -20,8 +26,6 @@ def index(request):
 #         'latest_question_list': latest_question_list,
 #     }
 #     return HttpResponse(template.render(context, request))
-
-
 class QuestionView(generic.ListView):
     template_name = 'polls/question.html'
     context_object_name = 'latest_question_list'

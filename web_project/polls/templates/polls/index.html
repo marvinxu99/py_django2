@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html>
+{% extends "polls/layout_general.html" %}
+{% block title %}
+Home
+{% endblock %}
 
-<head>
-    <meta charset="utf-8" />
-    <title>Index Page</title>
-</head>
-
-<body>
-    <ul>
-        <li><a href="http://localhost:8000/admin/">Admin</a></li>
-        <li><a href="http://localhost:8000/polls/">Polls</a></li>
-    </ul>
-</body>
-
-</html>
+{% block content %}
+<h2>Select an app:</h2>
+<ul>
+    <li><a href="http://localhost:8000/polls/">Polls</a></li>
+    <li><a href="http://localhost:8000/admin/">Admin</a></li>
+</ul>
+{% endblock %}
