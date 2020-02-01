@@ -17,7 +17,7 @@ Not Found: /
 >>> # on the other hand we should expect to find something at '/polls/'
 >>> # we'll use 'reverse()' rather than a hardcoded URL
 >>> from django.urls import reverse
->>> response = client.get(reverse('polls:index'))
+>>> response = client.get(reverse('polls:question'))
 >>> response.status_code
 200
 >>> response.content
