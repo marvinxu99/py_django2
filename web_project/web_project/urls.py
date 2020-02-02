@@ -22,7 +22,10 @@ from polls import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('polls/', include('polls.urls')),
-    path('', views.index, name='index')
+    path('', views.index, name='index'),
+    path('winter_winnpy/', views.winter_winnpy, name='winter_winnpy'),
+    path('winter_univer/', views.winter_univer, name='winter_univer'),
+    path('face_recognition/', views.face_recognition, name='face_recognition'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

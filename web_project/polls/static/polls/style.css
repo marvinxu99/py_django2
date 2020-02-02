@@ -39,6 +39,10 @@ li a {
     color: white;
 }
 
+ul li a {
+    text-decoration: none;
+}
+
 div a {
     font-size: large;
     color: white

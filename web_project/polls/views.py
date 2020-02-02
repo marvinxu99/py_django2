@@ -1,17 +1,22 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 
-
 from .models import Question, Choice
-
-# Create your views here.
-
 
 def index(request):
     return render(request, 'polls/index.html')
+
+def winter_winnpy(request):
+    return redirect('http://winterai.herokuapp.com')
+
+def winter_univer(request):
+    return HttpResponseRedirect('http://winnpysoft.pythonanywhere.com')
+
+def face_recognition(request):
+    return HttpResponseRedirect('http://winter-x-face.herokuapp.com')
 
 def about(request):
     return render(request, 'polls/about.html')
