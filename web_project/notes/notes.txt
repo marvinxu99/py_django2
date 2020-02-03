@@ -1,6 +1,11 @@
 (1) Django Tutorial in Visual Studio Code:
 https://code.visualstudio.com/docs/python/tutorial-django
 
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django
+
+# https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+
 
 (2) Django documentation 
 https://docs.djangoproject.com/en/3.0/

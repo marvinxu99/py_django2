@@ -13,10 +13,10 @@ def winter_winnpy(request):
     return redirect('http://winterai.herokuapp.com')
 
 def winter_univer(request):
-    return HttpResponseRedirect('http://winnpysoft.pythonanywhere.com')
+    return redirect('http://winnpysoft.pythonanywhere.com')
 
 def face_recognition(request):
-    return HttpResponseRedirect('http://winter-x-face.herokuapp.com')
+    return redirect('http://winter-x-face.herokuapp.com')
 
 def about(request):
     return render(request, 'polls/about.html')
